@@ -1,0 +1,5 @@
+static/uploads/*
+static/output/*
+__pycache__/
+*.mp4
+.env

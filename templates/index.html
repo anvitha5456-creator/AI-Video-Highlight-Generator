@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>3D Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:Poppins;
+background:#050505;
+color:white;
+text-align:center;
+perspective:1200px;
+overflow:hidden;
+}
+
+/* neon background glow */
+.glow{
+position:absolute;
+width:300px;
+height:300px;
+border-radius:50%;
+filter:blur(100px);
+opacity:0.6;
+animation:move 8s infinite;
+}
+
+.g1{background:#00f5ff; top:10%; left:10%;}
+.g2{background:#ff00ff; bottom:10%; right:10%;}
+
+@keyframes move{
+0%{transform:translateY(0);}
+50%{transform:translateY(-60px);}
+100%{transform:translateY(0);}
+}
+
+/* 3D panel */
+.panel{
+margin-top:60px;
+display:inline-block;
+padding:30px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(25px);
+border-radius:20px;
+width:600px;
+box-shadow:0 30px 80px rgba(0,0,0,0.9);
+transform:rotateX(10deg);
+transition:0.5s;
+}
+
+.panel:hover{
+transform:rotateX(0deg) scale(1.05);
+}
+
+input{
+padding:10px;
+margin:10px;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:linear-gradient(135deg,#00f5ff,#7b2ff7);
+color:white;
+cursor:pointer;
+}
+
+video{
+margin-top:20px;
+width:90%;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.7);
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+
+<h1>🎬 3D AI Highlight Generator</h1>
+
+<div class="panel">
+
+<!-- ✅ Upload Form -->
+<form action="/upload" method="POST" enctype="multipart/form-data">
+<input type="file" name="video" required>
+<button type="submit">Upload</button>
+</form>
+
+<!-- ✅ Upload Success Message -->
+{% if request.args.get('uploaded') %}
+<p style="color:lime;">✅ Video Uploaded Successfully</p>
+{% endif %}
+
+<br>
+
+<!-- ✅ Generate Highlight -->
+<form action="/generate" method="POST">
+<button type="submit">⚡ Generate Highlight</button>
+</form>
+
+<!-- ✅ Show Output Video -->
+{% if highlight %}
+<h3>✅ Output Ready</h3>
+<video controls>
+<source src="{{ url_for('static', filename='output/' + highlight) }}">
+</video>
+{% endif %}
+
+</div>
+
+</body>
+</html>

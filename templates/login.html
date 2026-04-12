@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | AI Video Highlight</title>
+    <style>
+        :root {
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --accent: #7928ca;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: #050505;
+            height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Animated Neon Background */
+        .background-blobs {
+            position: absolute; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden;
+        }
+        .blob {
+            position: absolute; width: 500px; height: 500px;
+            background: linear-gradient(45deg, var(--accent), #ff0080);
+            filter: blur(100px); border-radius: 50%;
+            opacity: 0.6; animation: drift 15s infinite alternate;
+        }
+        .blob.blue {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            right: -10%; top: -10%; animation-delay: -5s;
+        }
+        @keyframes drift {
+            from { transform: translate(-10%, -10%) scale(1); }
+            to { transform: translate(15%, 15%) scale(1.2); }
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 50px 40px;
+            width: 380px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border: 1px solid rgba(0, 242, 254, 0.5);
+        }
+
+        h2 {
+            color: #fff; text-transform: uppercase;
+            letter-spacing: 4px; margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--primary);
+        }
+        p { color: #888; font-size: 0.9em; margin-bottom: 30px; }
+
+        .input-group { margin-bottom: 20px; text-align: left; }
+        input {
+            width: 100%; padding: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white; outline: none;
+            box-sizing: border-box; transition: 0.3s;
+        }
+        input:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .btn {
+            width: 100%; padding: 14px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border: none; border-radius: 12px;
+            color: white; font-weight: bold; font-size: 1em;
+            cursor: pointer; transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px var(--primary);
+        }
+
+        .footer-link { margin-top: 25px; display: block; color: #666; text-decoration: none; font-size: 0.85em; }
+        .footer-link span { color: var(--primary); font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob"></div>
+        <div class="blob blue"></div>
+    </div>
+
+    <div class="glass-card">
+        <h2>Welcome Back</h2>
+        <p>Sign in to your AI workstation</p>
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button class="btn" type="submit">Unlock System</button>
+        </form>
+        <a href="/register" class="footer-link">New here? <span>Create Account</span></a>
+    </div>
+</body>
+</html>
