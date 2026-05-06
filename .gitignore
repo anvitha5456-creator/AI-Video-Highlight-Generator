@@ -1,5 +1,8 @@
-static/uploads/*
-static/output/*
-__pycache__/
+uploads/
+output/
+outputs/
 *.mp4
+*.avi
+__pycache__/
 .env
+*.wps
